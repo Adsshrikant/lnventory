@@ -1,0 +1,47 @@
+﻿@model inventorysys.Models.client
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+<form action="~/Client/Login " method="post">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div>
+        <table class="table table-bordered">
+            <tr>
+                <td colspan="3">@Html.ActionLink("New User Ragister Here", "Ragistration", null, htmlAttributes: new { @class = "btn btn-primary" })</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.c_username, htmlAttributes: new { @class = "control-label col-md-2" })</td>
+                <td>@Html.EditorFor(model => model.c_username, new { htmlAttributes = new { @class = "form-control" } })</td>
+                <td> @Html.ValidationMessageFor(model => model.c_username, "", new { @class = "text-danger" })</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.c_password, htmlAttributes: new { @class = "control-label col-md-2" })</td>
+                <td>@Html.EditorFor(model => model.c_password, new { htmlAttributes = new { @class = "form-control" } })</td>
+                <td> @Html.ValidationMessageFor(model => model.c_password, "", new { @class = "text-danger" })</td>
+            </tr>
+
+        </table>
+        <div>
+            <input type="submit" value="Login" class="btn btn-success" />
+        </div>
+        <div class="text-danger">
+            @ViewBag.Msg
+        </div>
+
+        <div>
+            @Html.ActionLink("Forgot Password","ForgotPass")
+        </div>
+</form>
+
+
+@section Scripts{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+}

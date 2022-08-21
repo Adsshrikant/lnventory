@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="DBEntities">
+    <EntitySetMapping Name="clients">
+      <EntityTypeMapping TypeName="DBModel.client">
+        <MappingFragment StoreEntitySet="client">
+          <ScalarProperty Name="ResetPassLink" ColumnName="ResetPassLink" />
+          <ScalarProperty Name="Client_id" ColumnName="Client_id" />
+          <ScalarProperty Name="c_username" ColumnName="c_username" />
+          <ScalarProperty Name="c_password" ColumnName="c_password" />
+          <ScalarProperty Name="c_email" ColumnName="c_email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="DBModel.product">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="item_Availability" ColumnName="item_Availability" />
+          <ScalarProperty Name="item_price" ColumnName="item_price" />
+          <ScalarProperty Name="item_description" ColumnName="item_description" />
+          <ScalarProperty Name="item_SKU" ColumnName="item_SKU" />
+          <ScalarProperty Name="Client_id" ColumnName="Client_id" />
+          <ScalarProperty Name="item_no" ColumnName="item_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

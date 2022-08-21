@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="Client_id" />
+    </Key>
+    <Property Name="Client_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="c_username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="c_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="c_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="products" Relationship="DBModel.FK_products_client" FromRole="client" ToRole="product" />
+    <Property Name="ResetPassLink" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="clients" EntityType="Self.client" />
+    <EntitySet Name="products" EntityType="DBModel.product" />
+    <AssociationSet Name="FK_products_client" Association="DBModel.FK_products_client">
+      <End Role="client" EntitySet="clients" />
+      <End Role="product" EntitySet="products" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="item_no" />
+    </Key>
+    <Property Name="item_no" Type="Int32" Nullable="false" />
+    <Property Name="Client_id" Type="Int32" />
+    <Property Name="item_SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="item_description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="item_price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="item_Availability" Type="Boolean" />
+    <NavigationProperty Name="client" Relationship="DBModel.FK_products_client" FromRole="product" ToRole="client" />
+  </EntityType>
+  <Association Name="FK_products_client">
+    <End Type="DBModel.client" Role="client" Multiplicity="0..1" />
+    <End Type="DBModel.product" Role="product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="Client_id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="Client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

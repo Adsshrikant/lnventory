@@ -1,0 +1,62 @@
+﻿@model inventorysys.Models.product
+
+@{
+    ViewBag.Title = "Details";
+    if (Session["userid"] == null)
+    {
+        Response.Redirect("~/Client/login");
+    }
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.item_SKU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.item_SKU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.item_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.item_description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.item_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.item_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.item_Availability)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.item_Availability)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.client.c_username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.client.c_username)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.item_no }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

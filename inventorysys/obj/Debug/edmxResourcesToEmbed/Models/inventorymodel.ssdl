@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="Client_id" />
+    </Key>
+    <Property Name="Client_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="c_username" Type="nvarchar" MaxLength="50" />
+    <Property Name="c_password" Type="nvarchar" MaxLength="50" />
+    <Property Name="c_email" Type="nvarchar" MaxLength="50" />
+    <Property Name="ResetPassLink" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="item_no" />
+    </Key>
+    <Property Name="item_no" Type="int" Nullable="false" />
+    <Property Name="Client_id" Type="int" />
+    <Property Name="item_SKU" Type="nvarchar" MaxLength="50" />
+    <Property Name="item_description" Type="nvarchar" MaxLength="50" />
+    <Property Name="item_price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="item_Availability" Type="bit" />
+  </EntityType>
+  <Association Name="FK_products_client">
+    <End Role="client" Type="Self.client" Multiplicity="0..1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="Client_id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="Client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBModelStoreContainer">
+    <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_products_client" Association="Self.FK_products_client">
+      <End Role="client" EntitySet="client" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

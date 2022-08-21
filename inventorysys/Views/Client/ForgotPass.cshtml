@@ -1,0 +1,36 @@
+﻿@model inventorysys.Models.client
+
+@{
+    ViewBag.Title = "ForgotPass";
+}
+
+<h2>ForgotPass</h2>
+<form action="~/Client/ForgotPass" method="post">
+    <table class="table table-bordered">
+        <tr>
+            <td><lable class="col-md-2">EmailID</lable></td>
+        </tr>
+        <tr>
+            <td>
+                @*<input type="text" name="EmailID" id="txtemail"/>*@
+                @Html.EditorFor(m => m.c_email)
+                @Html.ValidationMessageFor(model => model.c_email, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" id="btnsubmin" value="Send" class="btn btn-success" /></td>
+        </tr>
+    </table>
+    <div class="alert alert-danger">
+        @ViewBag.Message
+    </div>
+    <hr />
+    <div>
+        @Html.ActionLink("Back to Login", "Login", "Client")
+    </div>
+</form>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
